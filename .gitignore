@@ -1,0 +1,12 @@
+logs/
+*.log
+*.old
+*.bak
+*.tmp
+*~
+scratch/
+temp/
+verify/
+.DS_Store
+Thumbs.db
+
