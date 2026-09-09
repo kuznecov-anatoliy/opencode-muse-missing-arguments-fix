@@ -23,38 +23,38 @@ Local proxy that normalizes tool-call payloads for Muse Spark.
 
 ## Bug and Fix
 
-- `lowerToolCall3` drops `arguments` when `input` is undefined.
+- `lowerToolCall3` drops `arguments` when `input` is undefined. (Unverified: author-observed; no external links in repo.)
 - Provider rejects with `403`:
 - `Error from provider (Console): Upstream request failed: [invalid_request_error] input[403] missing required field arguments`
 - Proxy rewrites `function_call` without `arguments` to `"{}"`.
 - Applies to Responses `input[].function_call`.
 - Applies to Chat `messages[].tool_calls[].function`.
-- See [The problem](README.md#the-problem), [Root cause](README.md#root-cause), [Solution principle](README.md#solution-principle).
+- See [The problem](../README.md#the-problem), [Root cause](../README.md#root-cause), [Solution principle](../README.md#solution-principle).
 
 ## Logging
 
 - Default output is `stderr`.
 - File output only if `MUSE_PROXY_LOGFILE` or `LOGFILE` is set.
-- See [Verify](README.md#verify), [Troubleshooting/FAQ](README.md#troubleshootingfaq).
+- See [Verify](../README.md#verify), [Troubleshooting/FAQ](../README.md#troubleshootingfaq).
 
 ## Exit Codes
 
 - Server `EADDRINUSE` exits with `2`.
 - Installer port failures exit with `4`.
 - Server `2` maps to installer `4`.
-- See [Troubleshooting/FAQ](README.md#troubleshootingfaq).
+- See [Troubleshooting/FAQ](../README.md#troubleshootingfaq).
 
 ## Desktop
 
-- Supported version: `1.18.21` only.
+- Supported version: `1.18.21` only. (Unverified: author-tested; no external links in repo.)
 - After config change do full Desktop restart.
 - Health check: `healthz` returns JSON with `status` `up`.
-- Health includes `mutations=N` counter.
-- See [Requirements](README.md#requirements), [Install](README.md#install), [Verify](README.md#verify).
+- Logs include `mutations=N` counter (`healthz` returns `status`, `max_body_bytes`, etc., but no `mutations`).
+- See [Requirements](../README.md#requirements), [Install](../README.md#install), [Verify](../README.md#verify).
 
 ## Verified
 
 - Mock smoke: normalize plus `413` plus upstream `403/429/500` passthrough.
 - Installer dry-run passed.
 - Base URL plus full Desktop restart plus `healthz` JSON verified.
-- See [Install](README.md#install) and [Verify](README.md#verify).
+- See [Install](../README.md#install) and [Verify](../README.md#verify).

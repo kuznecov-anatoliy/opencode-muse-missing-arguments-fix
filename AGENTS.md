@@ -11,12 +11,12 @@ Notes for automation working in this repo.
 
 ## Canonical Failure
 
-- Bug: `lowerToolCall3` drops `arguments` when `input` is undefined.
+- Bug: `lowerToolCall3` drops `arguments` when `input` is undefined. (Unverified: author-observed; no external links in repo.)
 - Canonical block:
 - `input[N]: { type: function_call, ... } missing required field: arguments`
 - Full provider error:
 - `Error from provider (Console): Upstream request failed: [invalid_request_error] input[403] missing required field arguments`
-- Template: `input[N]` where `N` is the item index in `input[]`.
+- Template: `input[N]` where `N` is the item index in `input[]`. (Unverified: `input[403]` is the single observed case.)
 
 ## Fix
 
@@ -30,13 +30,13 @@ Notes for automation working in this repo.
 - Logs to `stderr`; file only if `MUSE_PROXY_LOGFILE` or `LOGFILE` set.
 - Server `EADDRINUSE` = `2`; installer port failure = `4`.
 - SOCKS: installer auto-detects `127.0.0.1:10808`; server accepts `host:port` or `direct` with fail-fast exit `3`.
-- Desktop `1.18.21` only; full restart required.
+- Desktop `1.18.21` only (Unverified: author-tested; no external links in repo); full restart required.
 - Files: `server.js`, `install_proxy.ps1`, `tools/rollback_proxy.ps1`, `tools/smoke-r3.js`, `tools/verify-r14-dryrun.bat`.
 - See [Requirements](README.md#requirements), [Install](README.md#install), [Verify](README.md#verify).
 
 ## Install and Verify
 
 - Install: run `install_proxy.ps1`, then full Desktop restart.
-- Verify: run `tools/smoke-r3.js` and `tools/verify-r14-dryrun.bat`, check `healthz` JSON `status` `up` with `mutations=N`.
+- Verify: run `tools/smoke-r3.js` and `tools/verify-r14-dryrun.bat`, check `healthz` JSON `status` `up`; `mutations=N` appears in proxy logs, not in `healthz`.
 - See [Install](README.md#install) and [Verify](README.md#verify).
 - Details: [The problem](README.md#the-problem), [Root cause](README.md#root-cause), [Solution principle](README.md#solution-principle), [Troubleshooting/FAQ](README.md#troubleshootingfaq).
